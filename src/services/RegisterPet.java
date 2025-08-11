@@ -53,5 +53,8 @@ public class RegisterPet {
         FileRepository.readSpecifyLineFile(7);
         pet.setPetBreed(scanner.nextLine());
 
+        pet.setPetAdress(petAdress);
+        pet.savePetFile();
+
     }
 }
