@@ -12,22 +12,43 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Pet {
+    private String petID;
     private String petName;
     private PetType petType;
     private PetGender petGender;
-    private PetAdress petAdress;
+    private PetAddress petAddress;
     private String petAge;
     private String petWeight;
     private String petBreed;
 
+    private static int contadorID = 1;
+
     public static final String NAO_INFORMADO = "Não informado";
+
+    public String getPetID() {
+        this.petID = String.valueOf(contadorID++);
+        return petID;
+    }
+
+    public void setPetID(String petID) {
+        this.petID = petID;
+    }
+
+    public static Path getPathCadastrar() {
+        return pathCadastrar;
+    }
+
+    public static void setPathCadastrar(Path pathCadastrar) {
+        Pet.pathCadastrar = pathCadastrar;
+    }
 
     public String getPetName() {
         return petName;
     }
 
-    public void setPetName(String petName) {
+    public String setPetName(String petName) {
         this.petName = petName;
+        return petName;
     }
 
     public PetType getPetType() {
@@ -46,12 +67,12 @@ public class Pet {
         this.petGender = petGender;
     }
 
-    public PetAdress getPetAdress() {
-        return petAdress;
+    public PetAddress getPetAddress() {
+        return petAddress;
     }
 
-    public void setPetAdress(PetAdress petAdress) {
-        this.petAdress = petAdress;
+    public void setPetAddress(PetAddress petAddress) {
+        this.petAddress = petAddress;
     }
 
     public String getPetAge() {
@@ -81,13 +102,14 @@ public class Pet {
     static Path pathCadastrar = Paths.get("src/data/pets-cadastrados");
 
     public void savePetFile() {
+        String formattedID = getPetID();
         String formattedName = getPetName().replace(" ", "").toUpperCase();
         SearchPet searchPet = new SearchPet();
         LocalDateTime dateNow = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
         String dateTimeFormatter = dateNow.format(formatter);
 
-        String fileName = dateTimeFormatter+" - "+formattedName+".txt";
+        String fileName = formattedID+" - "+dateTimeFormatter+" - "+formattedName+".txt";
 
         File directory = new File(String.valueOf(pathCadastrar.toAbsolutePath()));
         File file = new File(directory, fileName);
@@ -106,7 +128,7 @@ public class Pet {
             bw.newLine();
             bw.write("3 - "+getPetGender());
             bw.newLine();
-            bw.write("4 - "+getPetAdress().getPetStreet()+", "+getPetAdress().getPetHouseNumber()+", "+getPetAdress().getPetCity());
+            bw.write("4 - "+getPetAddress().getPetStreet()+", "+getPetAddress().getPetHouseNumber()+", "+getPetAddress().getPetCity());
             bw.newLine();
             bw.write("5 - "+getPetAge()+" anos");
             bw.newLine();

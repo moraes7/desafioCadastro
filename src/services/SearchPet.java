@@ -1,25 +1,29 @@
 package src.services;
 
+import src.model.Pet;
+
 import java.io.*;
 import java.nio.file.*;
+import java.util.ArrayList;
 
 public class SearchPet {
 
-    private static final Path pathCadastrar = Paths.get("src/data/pets-cadastrados");
+    private static final Path pathPetCadastrados = Paths.get("src/data/pets-cadastrados");
 
-    public void searchPet() {
-        File directory = pathCadastrar.toFile();
+    public ArrayList<Pet> searchPet() {
+        ArrayList<Pet> petList = new ArrayList<>();
+        File directory = pathPetCadastrados.toFile();
 
         if (!directory.exists() || !directory.isDirectory()) {
             System.out.println("Nenhum pet cadastrado ainda.");
-            return;
+            return petList;
         }
 
         File[] files = directory.listFiles((dir, name) -> name.toLowerCase().endsWith(".txt"));
 
         if (files == null || files.length == 0) {
             System.out.println("Nenhum arquivo de pet encontrado.");
-            return;
+            return petList;
         }
 
         for (File file : files) {
@@ -33,5 +37,6 @@ public class SearchPet {
                 System.out.println("Erro ao ler o arquivo: " + e.getMessage());
             }
         }
+        return petList;
     }
 }

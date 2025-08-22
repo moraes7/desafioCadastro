@@ -1,12 +1,7 @@
 package src.main;
 
-
-import src.model.Pet;
 import src.repository.FileRepository;
-import src.services.Menu;
-import src.services.RegisterPet;
-import src.services.SearchPet;
-import java.util.ArrayList;
+import src.services.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,7 +11,8 @@ public class Main {
         fileRepository.readFile();
         RegisterPet registerPet = new RegisterPet();
         SearchPet searchPet = new SearchPet();
-        //ArrayList<Pet> pets = searchPet.searchPet();
+        EditPet editPet = new EditPet();
+        DeletePet deletePet = new DeletePet();
 
         boolean running = true;
 
@@ -28,9 +24,18 @@ public class Main {
                     registerPet.registerPet(); // cadastrar um novo pet
                     break;
                 case 2:
-                    searchPet.searchPet();
+                    editPet.editPet();
                     break;
                 case 3:
+                    deletePet.deletePet();
+                    break;
+                case 4:
+                    searchPet.searchPet(); // listar todos os pets cadastrados
+                    break;
+                case 5:
+                    // listar pets por algum critério
+                    break;
+                case 6:
                     System.out.println("Saindo do sistema...");
                     running = false;
                     break;

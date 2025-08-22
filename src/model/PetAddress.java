@@ -1,23 +1,26 @@
 package src.model;
 
-public class PetAdress extends Pet{
+public class PetAddress extends Pet{
     private String petStreet;
     private String petHouseNumber;
     private String petCity;
 
-
     @Override
     public String toString() {
-        return "PetAdress{" +
+        return "PetAddress{" +
                 "petStreet='" + petStreet + '\'' +
                 ", petHouseNumber='" + petHouseNumber + '\'' +
                 ", petCity='" + petCity + '\'' +
                 '}';
     }
 
-    /*public String listAdress() {
-        //return "Rua: "+this.petStreet+"\n"+"Número da casa: "+this.petHouseNumber+"\n"+"Cidade: "+this.petCity;
-    }*/
+    public String getPetStreet() {
+        return petStreet;
+    }
+
+    public void setPetStreet(String petStreet) {
+        this.petStreet = petStreet;
+    }
 
     public String getPetHouseNumber() {
         return petHouseNumber;
@@ -33,13 +36,5 @@ public class PetAdress extends Pet{
 
     public void setPetCity(String petCity) {
         this.petCity = petCity;
-    }
-
-    public String getPetStreet() {
-        return petStreet;
-    }
-
-    public void setPetStreet(String petStreet) {
-        this.petStreet = petStreet;
     }
 }

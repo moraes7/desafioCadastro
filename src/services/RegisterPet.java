@@ -1,7 +1,7 @@
 package src.services;
 
 import src.model.Pet;
-import src.model.PetAdress;
+import src.model.PetAddress;
 import src.model.PetGender;
 import src.model.PetType;
 import src.repository.FileRepository;
@@ -11,7 +11,7 @@ public class RegisterPet {
     public void registerPet() {
         Scanner scanner = new Scanner(System.in);
         Pet pet = new Pet();
-        PetAdress petAdress = new PetAdress();
+        PetAddress petAddress = new PetAddress();
 
         // nome e sobrenome
         FileRepository.readSpecifyLineFile(1);
@@ -34,12 +34,12 @@ public class RegisterPet {
         // endereço
         FileRepository.readSpecifyLineFile(4);
         System.out.print("Rua: ");
-        petAdress.setPetStreet(scanner.nextLine());
+        petAddress.setPetStreet(scanner.nextLine());
         System.out.print("Número: ");
-        petAdress.setPetHouseNumber(scanner.nextLine());
+        petAddress.setPetHouseNumber(scanner.nextLine());
         System.out.print("Cidade: ");
-        petAdress.setPetCity(scanner.nextLine());
-        pet.setPetAdress(petAdress);
+        petAddress.setPetCity(scanner.nextLine());
+        pet.setPetAddress(petAddress);
 
         // idade aproximada
         FileRepository.readSpecifyLineFile(5);
@@ -53,7 +53,7 @@ public class RegisterPet {
         FileRepository.readSpecifyLineFile(7);
         pet.setPetBreed(scanner.nextLine());
 
-        pet.setPetAdress(petAdress);
+        pet.setPetAddress(petAddress);
         pet.savePetFile();
 
     }

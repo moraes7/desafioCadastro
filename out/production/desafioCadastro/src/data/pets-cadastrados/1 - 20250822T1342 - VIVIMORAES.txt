@@ -1,0 +1,7 @@
+1 - vivi moraes
+2 - PetType{descricao='Gato'}
+3 - FEMEA
+4 - nome rua, numero, cidade
+5 - 3 anos
+6 - 3 kg
+7 - vira lata
